@@ -1,4 +1,4 @@
-"""LLM Manager Module - Handles Gemini API interactions for text-to-JSON conversion."""
+"""LLM Manager Module - Handles Gemini API interactions for Extraction."""
 
 import os
 import json

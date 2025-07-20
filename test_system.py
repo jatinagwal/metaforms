@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Test script to validate the Text-to-JSON Conversion System"""
+"""Test script to validate the Extraction System"""
 
 import os
 import sys

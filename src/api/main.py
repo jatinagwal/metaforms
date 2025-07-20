@@ -1,4 +1,4 @@
-"""FastAPI Application for Text-to-JSON Conversion System"""
+"""FastAPI Application for Extraction System"""
 
 import os
 import json
@@ -55,7 +55,7 @@ class HealthResponse(BaseModel):
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="Text-to-JSON Conversion API",
+    title="Extraction API",
     description="Convert unstructured text into structured JSON following desired schemas",
     version="1.0.0"
 )

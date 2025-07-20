@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Runner script for Text-to-JSON Conversion API"""
+"""Runner script for Extraction API"""
 
 import os
 import sys

@@ -1,4 +1,4 @@
-"""Streamlit Web Interface for Text-to-JSON Conversion System"""
+"""Streamlit Web Interface for Extraction System"""
 
 # Add src to Python path
 import sys
@@ -120,7 +120,7 @@ def main():
     """Main Streamlit application."""
     
     # Header
-    st.title("🔄 Text-to-JSON Conversion System")
+    st.title("🔄 Extraction System")
     st.markdown("Convert unstructured text into structured JSON following desired schemas")
     
     # Initialize LLM Manager

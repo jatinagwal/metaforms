@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Runner script for Text-to-JSON Conversion Web App"""
+"""Runner script for Extraction Web App"""
 
 import os
 import sys
