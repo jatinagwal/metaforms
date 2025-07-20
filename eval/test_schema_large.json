@@ -1,0 +1,226 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Enterprise Data Import Schema",
+  "type": "object",
+  "required": [
+    "importConfig"
+  ],
+  "properties": {
+    "importConfig": {
+      "type": "object",
+      "required": [
+        "metadata",
+        "records"
+      ],
+      "properties": {
+        "metadata": {
+          "type": "object",
+          "required": [
+            "sourceSystem",
+            "timestamp",
+            "userId"
+          ],
+          "properties": {
+            "sourceSystem": {
+              "type": "string",
+              "enum": [
+                "CRM",
+                "ERP",
+                "Custom",
+                "Marketing",
+                "HR",
+                "Support"
+              ]
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "userId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "department": {
+              "type": "string",
+              "enum": [
+                "Finance",
+                "Sales",
+                "Engineering",
+                "Operations"
+              ]
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "low",
+                "normal",
+                "high",
+                "urgent"
+              ],
+              "default": "normal"
+            },
+            "compliance": {
+              "type": "object",
+              "properties": {
+                "gdpr": {
+                  "type": "boolean"
+                },
+                "hipaa": {
+                  "type": "boolean"
+                },
+                "dataRetentionDays": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "gdpr"
+              ]
+            },
+            "region": {
+              "type": "string",
+              "enum": [
+                "us-east",
+                "us-west",
+                "eu-central",
+                "ap-south"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "status",
+              "payload"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "new",
+                  "pending",
+                  "done",
+                  "failed",
+                  "retry"
+                ]
+              },
+              "payload": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "csv",
+                      "jsonl",
+                      "xml",
+                      "custom"
+                    ]
+                  },
+                  "formatVersion": {
+                    "type": "string"
+                  },
+                  "contentHash": {
+                    "type": "string"
+                  },
+                  "details": {
+                    "type": "object",
+                    "properties": {
+                      "field1": {
+                        "type": "string"
+                      },
+                      "field2": {
+                        "type": "integer"
+                      },
+                      "field3": {
+                        "type": "boolean"
+                      },
+                      "subPayload": {
+                        "type": "object",
+                        "properties": {
+                          "subField1": {
+                            "type": "string"
+                          },
+                          "subField2": {
+                            "type": "number"
+                          },
+                          "subField3": {
+                            "type": "boolean"
+                          },
+                          "deepNest": {
+                            "type": "object",
+                            "properties": {
+                              "level5A": {
+                                "type": "string"
+                              },
+                              "level5B": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "attributes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "idempotencyKey": {
+              "type": "string"
+            },
+            "notifyUrl": {
+              "type": "string",
+              "format": "uri"
+            },
+            "autoDetect": {
+              "type": "boolean"
+            },
+            "maxRetries": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 3
+            },
+            "retryWindow": {
+              "type": "integer"
+            },
+            "fallbackLocale": {
+              "type": "string",
+              "enum": [
+                "en-US",
+                "en-GB",
+                "fr-FR",
+                "de-DE"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
